@@ -10,12 +10,12 @@ namespace Museo
     {
         public string Nome { get; set; }
         public string Autore { get; set; }
-        public int Anno { get; set; }
+        public string Anno { get; set; }
         public string Link { get; set; }
 
         public override string ToString()
         {
-            return $"{Nome}, {Autore}, {Anno}";
+            return $"{Nome}; {Autore}; {Anno}";
         }
     }
 }

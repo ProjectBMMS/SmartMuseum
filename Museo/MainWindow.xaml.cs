@@ -30,7 +30,6 @@ namespace Museo
         private void Btn_Carica_Click(object sender, RoutedEventArgs e)
         {
             Lst_ListaOpere.Items.Clear();
-            Lst_ListaOpere.Items.Add("");
             string path = @"lista_opere.xml";
             XDocument xmlDoc = XDocument.Load(path);
             XElement xmlListaOpere = xmlDoc.Element("opere");
@@ -43,7 +42,7 @@ namespace Museo
                 Opera o = new Opera();
                 o.Nome = xmlNome.Value;
                 o.Autore = xmlAutore.Value;
-                o.Anno = Convert.ToInt32(xmlAnno.Value);
+                o.Anno = xmlAnno.Value;
                 Dispatcher.Invoke(() => Lst_ListaOpere.Items.Add(o));
                 Thread.Sleep(50);
             }
