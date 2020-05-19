@@ -98,5 +98,8 @@
   <ItemGroup>
     <Resource Include="Resources\UffiziSfondo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\QR_Code.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
