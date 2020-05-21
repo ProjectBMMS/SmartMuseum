@@ -30,6 +30,12 @@ namespace Museo
         private void Btn_Carica_Click(object sender, RoutedEventArgs e)
         {
             Lst_ListaOpere.Items.Clear();
+            Mtd_CaricaDati();
+        }
+
+        private void Mtd_CaricaDati()
+        {
+            List<string> elements = new List<string>();
             string path = @"lista_opere.xml";
             XDocument xmlDoc = XDocument.Load(path);
             XElement xmlListaOpere = xmlDoc.Element("opere");
@@ -43,12 +49,47 @@ namespace Museo
                 o.Nome = xmlNome.Value;
                 o.Autore = xmlAutore.Value;
                 o.Anno = xmlAnno.Value;
-                Dispatcher.Invoke(() => Lst_ListaOpere.Items.Add(o));
-                Thread.Sleep(50);
+                elements.Add(Convert.ToString(o));
             }
+
+            if (Opt_OperaCrescente.IsChecked == true)
+            {
+                elements.Sort();
+            }
+            else if (Opt_OperaDecrescente.IsChecked == true)
+            {
+                elements.Sort();
+                elements.Reverse();
+            }
+            else if (Opt_AutoreCrescente.IsChecked == true)
+            {
+                //List<string> autoreSort = new List<string>();
+                //foreach (var item in xmlOpera)
+                //{
+                //    XElement xmlAutore = item.Element("autore");
+                //    Opera o = new Opera();
+                //    o.Autore = xmlAutore.Value;
+                //    autoreSort.Add(Convert.ToString(o));
+                //}
+                //autoreSort.Sort();
+                //elements.OrderBy(x => x.Contains(autoreSort[]));
+            }
+            else
+            {
+
+            }
+
+
+            for (int i = 0; i < elements.Count; i++)
+                Dispatcher.Invoke(() => Lst_ListaOpere.Items.Add(elements[i]));
         }
 
         private void Btn_ApriBrowser_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Factory.StartNew(Mtd_ApriBrowserLink);
+        }
+
+        private void Mtd_ApriBrowserLink()
         {
             if (Convert.ToString(Lst_ListaOpere.SelectedItem) != "")
             {
@@ -68,7 +109,7 @@ namespace Museo
                         System.Diagnostics.Process.Start(o.Link);
                     }
                 }
-                
+
             }
             else
             {

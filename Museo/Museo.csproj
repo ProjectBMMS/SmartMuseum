@@ -96,10 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\UffiziSfondo.jpg" />
+    <Resource Include="Resources\QR_Code.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\QR_Code.png" />
+    <Resource Include="Resources\Background_Uffizi.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
