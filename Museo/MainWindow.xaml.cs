@@ -25,6 +25,7 @@ namespace Museo
         public MainWindow()
         {
             InitializeComponent();
+            Opt_OperaCrescente.IsChecked = true;
         }
 
         private void Btn_Carica_Click(object sender, RoutedEventArgs e)
@@ -49,7 +50,11 @@ namespace Museo
                 o.Nome = xmlNome.Value;
                 o.Autore = xmlAutore.Value;
                 o.Anno = xmlAnno.Value;
-                elements.Add(Convert.ToString(o));
+
+                if (Opt_OperaCrescente.IsChecked == true || Opt_OperaDecrescente.IsChecked == true)
+                    elements.Add(Convert.ToString($"{o.Nome}; {o.Autore}; {o.Anno}"));
+                else
+                    elements.Add(Convert.ToString($"{o.Autore}; {o.Nome}; {o.Anno}")); 
             }
 
             if (Opt_OperaCrescente.IsChecked == true)
@@ -63,22 +68,13 @@ namespace Museo
             }
             else if (Opt_AutoreCrescente.IsChecked == true)
             {
-                //List<string> autoreSort = new List<string>();
-                //foreach (var item in xmlOpera)
-                //{
-                //    XElement xmlAutore = item.Element("autore");
-                //    Opera o = new Opera();
-                //    o.Autore = xmlAutore.Value;
-                //    autoreSort.Add(Convert.ToString(o));
-                //}
-                //autoreSort.Sort();
-                //elements.OrderBy(x => x.Contains(autoreSort[]));
+                elements.Sort();
             }
             else
             {
-
+                elements.Sort();
+                elements.Reverse();
             }
-
 
             for (int i = 0; i < elements.Count; i++)
                 Dispatcher.Invoke(() => Lst_ListaOpere.Items.Add(elements[i]));
@@ -86,7 +82,7 @@ namespace Museo
 
         private void Btn_ApriBrowser_Click(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(Mtd_ApriBrowserLink);
+            Mtd_ApriBrowserLink();
         }
 
         private void Mtd_ApriBrowserLink()
@@ -104,10 +100,9 @@ namespace Museo
                     Opera o = new Opera();
                     o.Nome = xmlNome.Value;
                     o.Link = xmlLink.Value;
+
                     if (Convert.ToString(Lst_ListaOpere.SelectedItem).Contains(o.Nome))
-                    {
                         System.Diagnostics.Process.Start(o.Link);
-                    }
                 }
 
             }
