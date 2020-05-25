@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Museo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="489.111" Width="894" FontFamily="Sylfaen" FontSize="18">
+        Title="MainWindow" Height="444.711" Width="813.6" FontFamily="Sylfaen" FontSize="18" MaxWidth="820" MaxHeight="450">
     <Window.Background>
         <ImageBrush ImageSource="Resources/Background_Uffizi.jpg"/>
     </Window.Background>
@@ -13,11 +13,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="Lst_ListaOpere" HorizontalAlignment="Left" Height="341" VerticalAlignment="Top" Width="539" Margin="10,97,0,0" FontFamily="Sylfaen" FontSize="16"/>
-        <Button x:Name="Btn_ApriBrowser" Content="Apri sul browser" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="160" Click="Btn_ApriBrowser_Click" Margin="175,60,0,0" Background="#FFE5E3C4"/>
-        <Button x:Name="Btn_Carica" Content="Visualizza Lista" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Click="Btn_Carica_Click" Height="30" FontFamily="Sylfaen" FontSize="16" Margin="10,60,0,0" Background="#FFE5E3C4"/>
-        <Image HorizontalAlignment="Left" Height="273" Margin="660,134,0,0" VerticalAlignment="Top" Width="180" Source="Resources/QR_Code.png" Stretch="Fill"/>
-        <Grid HorizontalAlignment="Left" Height="124" Margin="674,20,0,0" VerticalAlignment="Top" Width="152" Background="#FFE5E3C4">
+        <ListBox x:Name="Lst_ListaOpere" HorizontalAlignment="Left" Height="341" VerticalAlignment="Top" Width="539" Margin="22,57,0,0" FontFamily="Sylfaen" FontSize="16"/>
+        <Button x:Name="Btn_ApriBrowser" Content="Apri sul browser" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="160" Click="Btn_ApriBrowser_Click" Margin="193,20,0,0" Background="#FFE5E3C4"/>
+        <Button x:Name="Btn_Carica" Content="Visualizza Lista" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Click="Btn_Carica_Click" Height="30" FontFamily="Sylfaen" FontSize="16" Margin="22,20,0,0" Background="#FFE5E3C4"/>
+        <Image HorizontalAlignment="Left" Height="273" Margin="601,126,0,0" VerticalAlignment="Top" Width="180" Source="Resources/QR_Code.png" Stretch="Fill"/>
+        <Grid HorizontalAlignment="Left" Height="124" Margin="616,15,0,0" VerticalAlignment="Top" Width="152" Background="#FFE5E3C4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="141*"/>
                 <ColumnDefinition Width="11*"/>
@@ -27,7 +27,7 @@
             <RadioButton x:Name="Opt_AutoreCrescente" Content="Autore ↑" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,63,0,0"/>
             <RadioButton x:Name="Opt_OperaDecrescente" Content="Opera ↓" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35,0,0"/>
         </Grid>
-        <TextBox x:Name="Txt_Ricerca" HorizontalAlignment="Left" Height="30" Margin="353,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Text="Ricerca opera o autore" Background="#FFE5E3C4" Foreground="#FF888888"/>
+        <TextBox x:Name="Txt_Ricerca" HorizontalAlignment="Left" Height="30" Margin="365,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Text="Ricerca opera o autore" Background="#FFE5E3C4" Foreground="#FF888888"/>
 
     </Grid>
 </Window>
