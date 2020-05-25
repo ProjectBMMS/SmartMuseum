@@ -26,17 +26,22 @@ namespace Museo
         {
             InitializeComponent();
             Opt_OperaCrescente.IsChecked = true;
+            Txt_Ricerca.IsReadOnly = true;
         }
 
+        //caricamento dati all'interno della listbox
         private void Btn_Carica_Click(object sender, RoutedEventArgs e)
         {
             Lst_ListaOpere.Items.Clear();
             Mtd_CaricaDati();
         }
 
+        List<string> elements = new List<string>();
+
+        //metodo caricamento dati
         private void Mtd_CaricaDati()
         {
-            List<string> elements = new List<string>();
+            elements.Clear();
             string path = @"lista_opere.xml";
             XDocument xmlDoc = XDocument.Load(path);
             XElement xmlListaOpere = xmlDoc.Element("opere");
@@ -51,12 +56,14 @@ namespace Museo
                 o.Autore = xmlAutore.Value;
                 o.Anno = xmlAnno.Value;
 
+                //controllo scelta dell'utente sull'ordine della lista
                 if (Opt_OperaCrescente.IsChecked == true || Opt_OperaDecrescente.IsChecked == true)
                     elements.Add(Convert.ToString($"{o.Nome}; {o.Autore}; {o.Anno}"));
                 else
                     elements.Add(Convert.ToString($"{o.Autore}; {o.Nome}; {o.Anno}")); 
             }
 
+            //ordinamento lista
             if (Opt_OperaCrescente.IsChecked == true)
             {
                 elements.Sort();
@@ -76,15 +83,21 @@ namespace Museo
                 elements.Reverse();
             }
 
+            //aggiunge gli elementi all'interno della lista
             for (int i = 0; i < elements.Count; i++)
                 Dispatcher.Invoke(() => Lst_ListaOpere.Items.Add(elements[i]));
+
+            //possibilità di ricerca di un'opera sbloccata
+            Txt_Ricerca.IsReadOnly = false;
         }
 
+        //apri nel browser click
         private void Btn_ApriBrowser_Click(object sender, RoutedEventArgs e)
         {
             Mtd_ApriBrowserLink();
         }
 
+        //metodo apri nel browser
         private void Mtd_ApriBrowserLink()
         {
             if (Convert.ToString(Lst_ListaOpere.SelectedItem) != "")
@@ -108,8 +121,26 @@ namespace Museo
             }
             else
             {
-                MessageBox.Show("Seleziona un elemento");
+                //messaggio di avviso
+                MessageBox.Show("Selezionare un elemento", "ATTENZIONE", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        //ricerca opera in tempo reale
+        private void Txt_Ricerca_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Lst_ListaOpere.Items.Clear();
+            foreach (string item in elements)
+            {
+                if (item.ToUpper().Contains(Txt_Ricerca.Text.ToUpper()))
+                    Lst_ListaOpere.Items.Add(item);
+            }
+        }
+
+        private void Txt_Ricerca_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!Txt_Ricerca.IsReadOnly)
+                Txt_Ricerca.Text = null;
         }
     }
 }

@@ -27,7 +27,7 @@
             <RadioButton x:Name="Opt_AutoreCrescente" Content="Autore ↑" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,63,0,0"/>
             <RadioButton x:Name="Opt_OperaDecrescente" Content="Opera ↓" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,35,0,0"/>
         </Grid>
-        <TextBox x:Name="Txt_Ricerca" HorizontalAlignment="Left" Height="30" Margin="365,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Text="Ricerca opera o autore" Background="#FFE5E3C4" Foreground="#FF888888"/>
+        <TextBox x:Name="Txt_Ricerca" HorizontalAlignment="Left" Height="30" Margin="365,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Text="Ricerca opera o autore" Background="#FFE5E3C4" Foreground="#FF888888" TextChanged="Txt_Ricerca_TextChanged" MouseDoubleClick="Txt_Ricerca_MouseDoubleClick"/>
 
     </Grid>
 </Window>
