@@ -33,7 +33,7 @@ namespace Museo
         private void Btn_Carica_Click(object sender, RoutedEventArgs e)
         {
             Lst_ListaOpere.Items.Clear();
-            Mtd_CaricaDati();
+            Task.Factory.StartNew(Mtd_CaricaDati);
         }
 
         List<string> elements = new List<string>();
@@ -57,23 +57,23 @@ namespace Museo
                 o.Anno = xmlAnno.Value;
 
                 //controllo scelta dell'utente sull'ordine della lista
-                if (Opt_OperaCrescente.IsChecked == true || Opt_OperaDecrescente.IsChecked == true)
+                if (Dispatcher.Invoke(() => Opt_OperaCrescente.IsChecked == true || Opt_OperaDecrescente.IsChecked == true))
                     elements.Add(Convert.ToString($"{o.Nome}; {o.Autore}; {o.Anno}"));
                 else
                     elements.Add(Convert.ToString($"{o.Autore}; {o.Nome}; {o.Anno}")); 
             }
 
             //ordinamento lista
-            if (Opt_OperaCrescente.IsChecked == true)
+            if (Dispatcher.Invoke(() => Opt_OperaCrescente.IsChecked == true))
             {
                 elements.Sort();
             }
-            else if (Opt_OperaDecrescente.IsChecked == true)
+            else if (Dispatcher.Invoke(() => Opt_OperaDecrescente.IsChecked == true))
             {
                 elements.Sort();
                 elements.Reverse();
             }
-            else if (Opt_AutoreCrescente.IsChecked == true)
+            else if (Dispatcher.Invoke(() => Opt_AutoreCrescente.IsChecked == true))
             {
                 elements.Sort();
             }
@@ -88,19 +88,19 @@ namespace Museo
                 Dispatcher.Invoke(() => Lst_ListaOpere.Items.Add(elements[i]));
 
             //possibilità di ricerca di un'opera sbloccata
-            Txt_Ricerca.IsReadOnly = false;
+            Dispatcher.Invoke(() => Txt_Ricerca.IsReadOnly = false);
         }
 
         //apri nel browser click
         private void Btn_ApriBrowser_Click(object sender, RoutedEventArgs e)
         {
-            Mtd_ApriBrowserLink();
+            Task.Factory.StartNew(Mtd_ApriBrowserLink);
         }
 
         //metodo apri nel browser
         private void Mtd_ApriBrowserLink()
         {
-            if (Convert.ToString(Lst_ListaOpere.SelectedItem) != "")
+            if (Dispatcher.Invoke(() => Convert.ToString(Lst_ListaOpere.SelectedItem) != ""))
             {
                 string path = @"lista_opere.xml";
                 XDocument xmlDoc = XDocument.Load(path);
@@ -114,7 +114,7 @@ namespace Museo
                     o.Nome = xmlNome.Value;
                     o.Link = xmlLink.Value;
 
-                    if (Convert.ToString(Lst_ListaOpere.SelectedItem).Contains(o.Nome))
+                    if (Dispatcher.Invoke(() => Convert.ToString(Lst_ListaOpere.SelectedItem).Contains(o.Nome)))
                         System.Diagnostics.Process.Start(o.Link);
                 }
 
