@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Wnd_Login.Properties
+namespace Login.Properties
 {
 
 

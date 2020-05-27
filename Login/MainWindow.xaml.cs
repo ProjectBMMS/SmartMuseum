@@ -12,10 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml;
 using System.Xml.Linq;
 
-namespace Wnd_Login
+namespace Login
 {
     /// <summary>
     /// Logica di interazione per MainWindow.xaml
@@ -29,20 +28,21 @@ namespace Wnd_Login
 
         private void Btn_Login_Click(object sender, RoutedEventArgs e)
         {
-            string path = "https://drive.google.com/open?id=1ZnolbTW2WXTkLgwjMDS7aTPb86xWiWO7";
+            string path = "registro.xml";
             XDocument xmlDoc = XDocument.Load(path);
             XElement xmlListaPersone = xmlDoc.Element("persone");
             var xmlPersona = xmlListaPersone.Elements("persona");
             foreach (var item in xmlPersona)
             {
-                XElement xmlNome = item.Element("nome");
+                XElement xmlEmail = item.Element("email");
+                XElement xmlUsername = item.Element("username");
                 XElement xmlPassword = item.Element("password");
-                Persona p = new Persona();
-                p.NomeCompleto = xmlNome.Value;
-                p.Password = xmlPassword.Value;
+                //Persona p = new Persona();
+                //p.NomeCompleto = xmlUsername.Value;
+                //p.Password = xmlPassword.Value;
 
-                if (xmlNome.Value == Txt_Username.Text || xmlPassword.Value == Txt_Password.Text)
-                    MessageBox.Show("congratulazioni Fiz, funziona");
+                if (xmlUsername.Value == Txt_Username.Text || xmlEmail.Value == Txt_Username.Text && xmlPassword.Value == Txt_Password.Text)
+                    MessageBox.Show($"congratulazioni {xmlUsername.Value}, funziona");
             }
         }
     }
