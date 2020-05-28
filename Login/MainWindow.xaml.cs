@@ -37,12 +37,19 @@ namespace Login
                 XElement xmlEmail = item.Element("email");
                 XElement xmlUsername = item.Element("username");
                 XElement xmlPassword = item.Element("password");
-                //Persona p = new Persona();
-                //p.NomeCompleto = xmlUsername.Value;
-                //p.Password = xmlPassword.Value;
 
                 if (xmlUsername.Value == Txt_Username.Text || xmlEmail.Value == Txt_Username.Text && xmlPassword.Value == Txt_Password.Text)
-                    MessageBox.Show($"congratulazioni {xmlUsername.Value}, funziona");
+                {
+                    Museo.MainWindow mainWindow = new Museo.MainWindow();
+                    this.Close();
+                    mainWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Verifica la correttezza dei dati inseriti", "Attenzione", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Txt_Username.Focus();
+                    break;
+                }
             }
         }
     }

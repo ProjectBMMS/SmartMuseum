@@ -95,5 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Museo\Museo.csproj">
+      <Project>{b4a12dd3-668e-41eb-9ce3-e1f9ec21dca5}</Project>
+      <Name>Museo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
