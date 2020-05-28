@@ -38,11 +38,12 @@ namespace Login
                 XElement xmlUsername = item.Element("username");
                 XElement xmlPassword = item.Element("password");
 
-                if (xmlUsername.Value == Txt_Username.Text || xmlEmail.Value == Txt_Username.Text && xmlPassword.Value == Txt_Password.Text)
+                if (xmlUsername.Value == Txt_Username.Text && xmlPassword.Value == Txt_Password.Text || xmlEmail.Value == Txt_Username.Text && xmlPassword.Value == Txt_Password.Text)
                 {
                     Museo.MainWindow mainWindow = new Museo.MainWindow();
                     this.Close();
                     mainWindow.Show();
+                    break;
                 }
                 else
                 {
